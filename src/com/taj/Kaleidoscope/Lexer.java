@@ -1,7 +1,9 @@
-package com.lang.vir;
+package com.taj.Kaleidoscope;
+
+import java.util.Scanner;
 
 /**
- * 
+ * ´Ê·¨·ÖÎöÆ÷
  * @author taojx
  *
  */
@@ -51,5 +53,18 @@ public class Lexer {
 			int ThisChar = LastChar;
 			LastChar = input[indexOfInput];
 			return ThisChar;
+	}
+	
+	public static void main(String[] args) {
+		 @SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+	     System.out.println("Input:");
+	     while(sc.hasNextLine()) {
+	    	 String line = sc.nextLine();
+	    	 if (line == null || line.length() == 0) {
+	    		 continue;
+	    	 }
+	    	 System.out.println(gettok(line.toCharArray()));
+	     }
 	}
 }

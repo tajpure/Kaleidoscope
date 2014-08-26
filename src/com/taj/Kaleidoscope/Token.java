@@ -1,5 +1,10 @@
-package com.lang.vir;
+package com.taj.Kaleidoscope;
 
+/**
+ * 由词法分析生成的二元式
+ * @author taojx
+ *
+ */
 public class Token {
 	
 	public static final int TOK_EOF = -1;

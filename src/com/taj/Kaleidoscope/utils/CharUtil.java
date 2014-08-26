@@ -1,4 +1,4 @@
-package com.lang.vir;
+package com.taj.Kaleidoscope.utils;
 
 public class CharUtil {
 	
