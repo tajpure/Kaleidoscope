@@ -8,7 +8,7 @@ import com.taj.Kaleidoscope.entity.ST;
 import com.taj.Kaleidoscope.entity.Token;
 
 /**
- * ´Ê·¨·ÖÎöÆ÷
+ * è¯æ³•åˆ†æå™¨
  * @author taojx
  *
  */
@@ -16,7 +16,7 @@ public class Lexer {
 	
 	private static char[] sourceOfCharArray;
 	
-	//Ô´ÎÄ¼şÀïµÄµ±Ç°Î»ÖÃÖ¸Õë
+	//æºæ–‡ä»¶é‡Œçš„å½“å‰ä½ç½®æŒ‡é’ˆ
 	private static int indexOfSource;
 	
 	private static void init() {
@@ -51,7 +51,7 @@ public class Lexer {
 				token.setNumber(ST.IDENTIFIER);
 				token.setSymbol(IdentifierStr);
 			}
-			//ÓÉÓÚÖ¸ÕëÇ°ÒÆÁËÒ»Î»£¬´ËÊ±»ØÍË
+			//ç”±äºæŒ‡é’ˆå‰ç§»äº†ä¸€ä½ï¼Œæ­¤æ—¶å›é€€
 			if (indexOfSource < sourceOfCharArray.length) {
 				indexOfSource--;
 			}
@@ -64,7 +64,7 @@ public class Lexer {
 				
 			token.setNumber(ST.NUMBER);
 			token.setSymbol(NumStr);
-			//ÓÉÓÚÖ¸ÕëÇ°ÒÆÁËÒ»Î»£¬´ËÊ±»ØÍË
+			//ç”±äºæŒ‡é’ˆå‰ç§»äº†ä¸€ä½ï¼Œæ­¤æ—¶å›é€€
 			indexOfSource--;
 		} else if (LastChar == '#') {
 			String comments = "";

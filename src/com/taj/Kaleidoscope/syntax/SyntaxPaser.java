@@ -8,7 +8,6 @@ import java.util.Vector;
 
 import com.taj.Kaleidoscope.ast.BinaryExprAST;
 import com.taj.Kaleidoscope.ast.CallExprAST;
-import com.taj.Kaleidoscope.ast.ErrorAST;
 import com.taj.Kaleidoscope.ast.ExprAST;
 import com.taj.Kaleidoscope.ast.FunctionAST;
 import com.taj.Kaleidoscope.ast.NumberExprAST;
@@ -19,21 +18,21 @@ import com.taj.Kaleidoscope.entity.Token;
 import com.taj.Kaleidoscope.lexical.Lexer;
 
 /**
- * Óï·¨·ÖÎöÆ÷
+ * è¯­æ³•åˆ†æå™¨
  * @author taojx
  *
  */
 public class SyntaxPaser {
 	
-	//¶şÔªÊ½ĞòÁĞµÄµ±Ç°Ö¸Õë
+	//äºŒå…ƒå¼åºåˆ—çš„å½“å‰æŒ‡é’ˆ
 	private static int indexOfTokenList = 0;
-	//ÓÉ´Ê·¨·ÖÎöÆ÷Éú³ÉµÄ¶şÔªÊ½ĞòÁĞ
+	//ç”±è¯æ³•åˆ†æå™¨ç”Ÿæˆçš„äºŒå…ƒå¼åºåˆ—
 	private static List<Token> tokenList;
-	//Ëã·ûÓÅÏÈ¼¶±í
+	//ç®—ç¬¦ä¼˜å…ˆçº§è¡¨
 	private static Map<Integer, Integer> binopPrecedence = new HashMap<Integer, Integer>();
 	
 	public SyntaxPaser() {
-		//É¶¶¼²»¸É
+		//å•¥éƒ½ä¸å¹²
 	}
 	
 	public SyntaxPaser(List<Token> tokenList) {
@@ -60,7 +59,7 @@ public class SyntaxPaser {
 	}
 	
 	public static ExprAST parseParenExpr() {
-		getNextToken(); //eat (¡£
+		getNextToken(); //eat (ã€‚
 		ExprAST v = parseExpression();
 		if (getCurToken().getSymbol() == ")") {
 			error("expected ')'"); 
@@ -71,7 +70,10 @@ public class SyntaxPaser {
 	
 	public static ExprAST parseIdentifierExpr(String idName) {
 		Token curToken = getNextToken();
-		ExprAST ast = new VariableExprAST(idName);
+		if (curToken == null) {
+			return null;
+		}
+		//ExprAST ast = new VariableExprAST(idName);
 		if (curToken.getNumber() != ST.LP) {
 			return new VariableExprAST(idName);
 		}
@@ -104,7 +106,7 @@ public class SyntaxPaser {
 	}
 	
 	public static ExprAST parsePrimary() {
-		Token token = getNextToken();
+		Token token = getCurToken();
 		if (token == null) {
 			return null;
 		}
@@ -141,7 +143,7 @@ public class SyntaxPaser {
 	}
 	
 	/**
-	 * ½âÎöº¯ÊıÔ­ĞÍ
+	 * è§£æå‡½æ•°åŸå‹
 	 * @return
 	 */
 	public static PrototypeAST parsePrototype() {
@@ -168,11 +170,11 @@ public class SyntaxPaser {
 	}
 	
 	/**
-	 * ½âÎöº¯Êı¶¨Òå
+	 * è§£æå‡½æ•°å®šä¹‰
 	 * @return
 	 */
 	public static FunctionAST parseDefinition() {
-		//getNextToken();
+		getNextToken();
 		PrototypeAST proto = parsePrototype();
 		if (proto == null){
 			return null;
@@ -221,7 +223,7 @@ public class SyntaxPaser {
 		binopPrecedence.put(ST.MULTIPLY, 40);
 	}
 	
-	//»ñÈ¡µ±Ç°¶şÔªÊ½ÓÅÏÈ¼¶
+	//è·å–å½“å‰äºŒå…ƒå¼ä¼˜å…ˆçº§
 	public static int getTokPrecedence() {
 		 //System.out.println(getCurToken().getNumber());
 		 Integer tokPrec = binopPrecedence.get(getCurToken().getNumber());
