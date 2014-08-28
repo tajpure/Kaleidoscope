@@ -1,42 +1,42 @@
 package com.taj.Kaleidoscope.entity;
 
 /**
- * ·ûºÅ±í (Symbol Table)
+ * ç¬¦å·è¡¨ (Symbol Table)
  * @author taojx
  *
  */
 public class ST {
-	// Î´¶¨Òå
+	// æœªå®šä¹‰
 	public static final int UNDEDINE = 0;
-	// ½áÊø·û
+	// ç»“æŸç¬¦
 	public static final int EOF = 1;
-	// º¯Êı¶¨Òå
+	// å‡½æ•°å®šä¹‰
 	public static final int DEF = 2;
-	// Íâ²¿ÉùÃ÷
+	// å¤–éƒ¨å£°æ˜
 	public static final int EXTERN = 3;
-	// ±êÊ¶·û
+	// æ ‡è¯†ç¬¦
 	public static final int IDENTIFIER = 4;
-	// Êı×Ö
+	// æ•°å­—
 	public static final int NUMBER = 5;
-	// ±äÁ¿Ãû
+	// å˜é‡å
 	public static final int VARIABLES = 6;
-	// ÕûĞÎ
+	// æ•´å½¢
 	public static final int INT = 7;
-	// ¸¡µãÊı
+	// æµ®ç‚¹æ•°
 	public static final int FLOAT = 8;
-	// Ë«¾«¶È¸¡µãÊı
+	// åŒç²¾åº¦æµ®ç‚¹æ•°
 	public static final int DOUBLE = 9;
-	// ×Ö·û´®
+	// å­—ç¬¦ä¸²
 	public static final int STRING = 10;
-	// ¾²Ì¬±êÊ¶·û
+	// é™æ€æ ‡è¯†ç¬¦
 	public static final int STATIC = 11;
-	// ÖÕÌ¬
+	// ç»ˆæ€
 	public static final int FINAL = 12;
-	// ¹«ÓĞÀàĞÍ
+	// å…¬æœ‰ç±»å‹
 	public static final int PUBLIC = 13;
-	// ±£»¤ÀàĞÍ
+	// ä¿æŠ¤ç±»å‹
 	public static final int PROTECT = 14;
-	// Ë½ÓĞÀàĞÍ
+	// ç§æœ‰ç±»å‹
 	public static final int PRIVATE = 15;
 	// =
 	public static final int EQUAL = 16;
@@ -48,18 +48,18 @@ public class ST {
 	public static final int MULTIPLY = 19;
 	// /
 	public static final int DIVIDE = 20;
-	// ×¢ÊÍ
+	// æ³¨é‡Š
 	public static final int COMMENT = 21;
-	// Ğ¡ÓÚ
+	// å°äº
 	public static final int LT = 22;
-	// ´óÓÚ
+	// å¤§äº
 	public static final int BT = 23;
-	// ×óÔ²À¨ºÅ
+	// å·¦åœ†æ‹¬å·
 	public static final int LP = 24;
-	// ÓÒÔ²À¨ºÅ
+	// å³åœ†æ‹¬å·
 	public static final int RP = 25;
-	// ·ÖºÅ
+	// åˆ†å·
 	public static final int SEMICOLON = 26;
-	// ¶ººÅ
+	// é€—å·
 	public static final int COMMA = 27;
 }

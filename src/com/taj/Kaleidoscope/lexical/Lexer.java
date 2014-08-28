@@ -52,7 +52,7 @@ public class Lexer {
 				token.setSymbol(IdentifierStr);
 			}
 			//由于指针前移了一位，此时回退
-			if (indexOfSource < sourceOfCharArray.length) {
+			if (indexOfSource <= sourceOfCharArray.length) {
 				indexOfSource--;
 			}
 		} else if (Character.isDigit(LastChar) || '.' == LastChar) {
@@ -94,6 +94,8 @@ public class Lexer {
 			token.setNumber(ST.LT);
 		} else if (LastChar == ';') { 
 			token.setNumber(ST.SEMICOLON);
+		} else if (LastChar == ',') {
+			token.setNumber(ST.COMMA);
 		} else if (LastChar == ' ') {
 			token = getToken();
 		} else {

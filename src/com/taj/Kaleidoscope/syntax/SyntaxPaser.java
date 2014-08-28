@@ -54,7 +54,7 @@ public class SyntaxPaser {
 	
 	public static ExprAST parseNumberExpr(double numVal) {
 		ExprAST result = new NumberExprAST(numVal);
-		getNextToken();
+		getNextToken(); //eat number
 		return result;
 	}
 	
@@ -79,18 +79,22 @@ public class SyntaxPaser {
 		}
 		Vector<ExprAST> args = new Vector<ExprAST>();
 		if (curToken.getNumber() != ST.RP) {
+			getNextToken();	//eat (
 			while (true) {
 				ExprAST arg = parseExpression();
 				if (arg == null) {
 					return null;
 				}
 				args.add(arg);
+				curToken = getCurToken();
 				if (curToken.getNumber() == ST.RP) {
+					getNextToken(); //eat )
 					break;
 				}
 				if (curToken.getNumber() != ST.COMMA) {
 					return error("Expected ')' or ',' in argument list");
 				}
+				getNextToken();	//eat ,
 			}
 		}
 		
@@ -125,7 +129,7 @@ public class SyntaxPaser {
 				return LHS;
 			}
 			int binOp = getCurToken().getNumber();
-			//getNextToken(); // eat binop
+			getNextToken(); // eat binop
 			
 			// Parse the primary expression after the binary operator.
 			ExprAST RHS = parsePrimary();
@@ -249,6 +253,7 @@ public class SyntaxPaser {
 	public static void handleDefinition() {
 		if (parseDefinition() != null) {
 			System.out.println("Parsed a function definition.");
+			//getNextToken();
 		} else {
 			getNextToken();
 		}

@@ -1,7 +1,7 @@
 package com.taj.Kaleidoscope.ast;
 
 /**
- * ±í´ïÊ½µÄ³éÏóÓï·¨Ê÷
+ * è¡¨è¾¾å¼çš„æŠ½è±¡è¯­æ³•æ ‘
  * @author taojx
  *
  */

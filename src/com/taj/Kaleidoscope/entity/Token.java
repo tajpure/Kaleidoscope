@@ -1,7 +1,7 @@
 package com.taj.Kaleidoscope.entity;
 
 /**
- * ÓÉ´Ê·¨·ÖÎöÉú³ÉµÄ¶şÔªÊ½
+ * ç”±è¯æ³•åˆ†æç”Ÿæˆçš„äºŒå…ƒå¼
  * @author taojx
  *
  */
