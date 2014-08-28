@@ -2,10 +2,17 @@ package com.taj.Kaleidoscope.ast;
 
 import java.util.Vector;
 
+/**
+ * 调用函数抽象语法树
+ * @author taojx
+ *
+ */
 public class CallExprAST implements ExprAST {
 	
+	// 调用函数名
 	private String callee;
 	
+	// 调用函数实参
 	private Vector<ExprAST> args;
 	
 	public CallExprAST(String callee, Vector<ExprAST> args) {

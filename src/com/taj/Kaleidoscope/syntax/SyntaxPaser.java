@@ -87,14 +87,13 @@ public class SyntaxPaser {
 				}
 				args.add(arg);
 				curToken = getCurToken();
+				getNextToken();	//eat , or )
 				if (curToken.getNumber() == ST.RP) {
-					getNextToken(); //eat )
 					break;
 				}
 				if (curToken.getNumber() != ST.COMMA) {
 					return error("Expected ')' or ',' in argument list");
 				}
-				getNextToken();	//eat ,
 			}
 		}
 		
