@@ -50,9 +50,9 @@ public class ST {
 	public static final int DIVIDE = 20;
 	// 注释
 	public static final int COMMENT = 21;
-	// 小于
+	// <
 	public static final int LT = 22;
-	// 大于
+	// >
 	public static final int BT = 23;
 	// 左圆括号
 	public static final int LP = 24;
