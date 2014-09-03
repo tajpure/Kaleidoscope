@@ -2,6 +2,8 @@ package com.taj.Kaleidoscope.ast;
 
 import java.util.Vector;
 
+import org.jllvm.Value;
+
 /**
  * 函数原型抽象语法树
  * @author taojx
@@ -32,5 +34,10 @@ public class PrototypeAST {
 
 	public void setArgs(Vector<String> args) {
 		this.args = args;
+	}
+	
+	public Value codegen() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

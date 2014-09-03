@@ -25,11 +25,11 @@ import com.taj.Kaleidoscope.lexical.Lexer;
 public class SyntaxPaser {
 	
 	//二元式序列的当前指针
-	private static int indexOfTokenList = 0;
+	private  int indexOfTokenList = 0;
 	//由词法分析器生成的二元式序列
-	private static List<Token> tokenList;
+	private  List<Token> tokenList;
 	//算符优先级表
-	private static Map<Integer, Integer> binopPrecedence = new HashMap<Integer, Integer>();
+	private  Map<Integer, Integer> binopPrecedence = new HashMap<Integer, Integer>();
 	
 	public SyntaxPaser() {
 		//啥都不干
@@ -39,11 +39,19 @@ public class SyntaxPaser {
 		this.tokenList = tokenList;
 	}
 	
-	public static Token getCurToken() {
+	/**
+	 * 获取当前Token
+	 * @return
+	 */
+	public  Token getCurToken() {
 		return tokenList.get(indexOfTokenList);
 	}
 	
-	public static Token getNextToken() {
+	/**
+	 * 获取下一Token
+	 * @return
+	 */
+	public  Token getNextToken() {
 		indexOfTokenList++;
 		if (indexOfTokenList >= tokenList.size()) {
 			return null;
@@ -52,13 +60,13 @@ public class SyntaxPaser {
 		return token;
 	}
 	
-	public static ExprAST parseNumberExpr(double numVal) {
+	public  ExprAST parseNumberExpr(double numVal) {
 		ExprAST result = new NumberExprAST(numVal);
 		getNextToken(); //eat number
 		return result;
 	}
 	
-	public static ExprAST parseParenExpr() {
+	public  ExprAST parseParenExpr() {
 		getNextToken(); //eat (。
 		ExprAST v = parseExpression();
 		if (getCurToken().getSymbol() == ")") {
@@ -68,7 +76,7 @@ public class SyntaxPaser {
 		return v;
 	}
 	
-	public static ExprAST parseIdentifierExpr(String idName) {
+	public  ExprAST parseIdentifierExpr(String idName) {
 		Token curToken = getNextToken();
 		if (curToken == null) {
 			return null;
@@ -100,7 +108,7 @@ public class SyntaxPaser {
 		return new CallExprAST(idName, args);
 	}
 	
-	public static ExprAST parseExpression() {
+	public  ExprAST parseExpression() {
 		ExprAST LHS = parsePrimary();
 		if (LHS == null) {
 			return null;
@@ -108,7 +116,7 @@ public class SyntaxPaser {
 		return parseBinOpRHS(0, LHS);
 	}
 	
-	public static ExprAST parsePrimary() {
+	public  ExprAST parsePrimary() {
 		Token token = getCurToken();
 		if (token == null) {
 			return null;
@@ -121,7 +129,7 @@ public class SyntaxPaser {
 		}
 	}
 	
-	public static ExprAST parseBinOpRHS(int exprPrec, ExprAST LHS) {
+	public  ExprAST parseBinOpRHS(int exprPrec, ExprAST LHS) {
 		while (true) {
 			int tokPrec = getTokPrecedence();
 			if (tokPrec < exprPrec) {
@@ -149,7 +157,7 @@ public class SyntaxPaser {
 	 * 解析函数原型
 	 * @return
 	 */
-	public static PrototypeAST parsePrototype() {
+	public  PrototypeAST parsePrototype() {
 		Token curToken = getCurToken();
 		if (curToken.getNumber() != ST.IDENTIFIER) {
 			return errorP("Expected function name in prototype");
@@ -176,7 +184,7 @@ public class SyntaxPaser {
 	 * 解析函数定义
 	 * @return
 	 */
-	public static FunctionAST parseDefinition() {
+	public  FunctionAST parseDefinition() {
 		getNextToken();
 		PrototypeAST proto = parsePrototype();
 		if (proto == null){
@@ -190,12 +198,12 @@ public class SyntaxPaser {
 		}
 	}
 	
-	public static PrototypeAST parseExtern() {
+	public  PrototypeAST parseExtern() {
 		getNextToken();
 		return parsePrototype();
 	}
 	
-	public static FunctionAST parseTopLevelExpr() {
+	public  FunctionAST parseTopLevelExpr() {
 		ExprAST e = parseExpression();
 		if (e != null) {
 			PrototypeAST proto = new PrototypeAST("", new Vector<String>());
@@ -204,22 +212,22 @@ public class SyntaxPaser {
 		return null;
 	}
 	
-	public static ExprAST error(String err) {
+	public  ExprAST error(String err) {
 		System.out.println(err);
 		return null;
 	}
 	
-	public static PrototypeAST errorP(String err) {
+	public  PrototypeAST errorP(String err) {
 		System.out.println(err);
 		return null;
 	}
 	
-	public static FunctionAST errorF(String err) {
+	public  FunctionAST errorF(String err) {
 		System.out.println(err);
 		return null;
 	}
 	
-	public static void initBinopPrecedence() {
+	public  void initBinopPrecedence() {
 		binopPrecedence.put(ST.LT, 10);
 		binopPrecedence.put(ST.PLUS, 20);
 		binopPrecedence.put(ST.SUBTRACT, 20);
@@ -227,7 +235,7 @@ public class SyntaxPaser {
 	}
 	
 	//获取当前二元式优先级
-	public static int getTokPrecedence() {
+	public  int getTokPrecedence() {
 		 //System.out.println(getCurToken().getNumber());
 		 Integer tokPrec = binopPrecedence.get(getCurToken().getNumber());
 		 if (tokPrec == null) {
@@ -236,7 +244,7 @@ public class SyntaxPaser {
 		  return tokPrec;
 	}
 	
-	public static void mainLoop() {
+	public  void mainLoop() {
 		while (indexOfTokenList < tokenList.size()) {
 			Token curToken = getCurToken();
 			switch (curToken.getNumber()) {
@@ -249,7 +257,7 @@ public class SyntaxPaser {
 		}
 	}
 	
-	public static void handleDefinition() {
+	public  void handleDefinition() {
 		if (parseDefinition() != null) {
 			System.out.println("Parsed a function definition.");
 			//getNextToken();
@@ -258,7 +266,7 @@ public class SyntaxPaser {
 		}
 	}
 	
-	public static void handleExtern() {
+	public  void handleExtern() {
 		if (parseExtern() != null) {
 			System.out.println("Parsed an extern");
 		} else {
@@ -266,7 +274,7 @@ public class SyntaxPaser {
 		}
 	}
 
-	public static void handleTopLevelExpression() {
+	public  void handleTopLevelExpression() {
 		if (parseTopLevelExpr() != null) {
 			System.out.println("Parsed a top-level expr");
 		} else {
@@ -275,13 +283,14 @@ public class SyntaxPaser {
 	}
 	
 	public static void main(String[] args) {
-		initBinopPrecedence();
-		//System.out.println(binopPrecedence.get(4));
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 	    System.out.println("input:");
 	    String line = sc.nextLine();
-	    tokenList = Lexer.analysis(line);
-		mainLoop();
+	    
+		SyntaxPaser paser = new SyntaxPaser(Lexer.analysis(line));
+		paser.initBinopPrecedence();
+	    paser.mainLoop();
 	}
 	
 }

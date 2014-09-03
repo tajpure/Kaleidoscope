@@ -1,5 +1,7 @@
 package com.taj.Kaleidoscope.ast;
 
+import org.jllvm.Value;
+
 /**
  * 函数抽象语法树
  * @author taojx
@@ -31,5 +33,10 @@ public class FunctionAST {
 
 	public void setBody(ExprAST body) {
 		this.body = body;
+	}
+	
+	public Value codegen() {
+		
+		return null;
 	}
 }

@@ -2,6 +2,8 @@ package com.taj.Kaleidoscope.ast;
 
 import java.util.Vector;
 
+import org.jllvm.Value;
+
 /**
  * 调用函数抽象语法树
  * @author taojx
@@ -34,5 +36,11 @@ public class CallExprAST implements ExprAST {
 
 	public void setArgs(Vector<ExprAST> args) {
 		this.args = args;
+	}
+
+	@Override
+	public Value codegen() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
